@@ -1,0 +1,13 @@
+config {
+  type: "view",
+  materialized: "false" 
+  
+}
+
+SELECT
+  fruit,
+  SUM(count) as count,
+  current_date() as new_column,
+  current_datetime() as new_column1
+FROM ${ref("mysql2_table")}
+GROUP BY 1

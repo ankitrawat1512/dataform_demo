@@ -1,9 +1,11 @@
 config {
-  type: "table"
+  type: "table",
+ // materialized: "incremental" only allowed for views
 }
 
 SELECT
   fruit,
-  SUM(count) as count
+  SUM(count) as count,
+  current_datetime() as new_column1
 FROM ${ref("mysql1_view")}
 GROUP BY 1
